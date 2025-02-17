@@ -2,7 +2,7 @@
 # EN: This file is DiscordLaunchMC-en (English version). If you want to use Japanese, please use DiscordLaunchMC.
 # DiscordLaunchMC: https://github.com/insane-catt/DiscordLaunchMC
 
-# The settings section that was previously here has been moved to settings.py.
+# The settings section that was previously here has been moved to config.py.
 from config import *
 
 

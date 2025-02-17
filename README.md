@@ -65,7 +65,9 @@ https://twitter.com/insane_catt
 Please DM me
 
 ## Version history
-- v1.0.5-en: Updated README, and the English version was separated
+- v1.0.7-en: Updated README and revised comments
+- v1.0.6-en: Moved simple settings to config.py
+- v1.0.5-en: Updated README and separated the English version
 - v1.0.4: Updated README
 - v1.0.3: Updated README
 - v1.0.2: Implemented /logout command
