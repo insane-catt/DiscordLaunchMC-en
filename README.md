@@ -33,21 +33,21 @@ sudo apt install screen -y
 ## How to use
 **It is assumed that you have already set up a Minecraft server with Paper.** First, do that, and then follow these steps.
 1. Download the package from the Releases on the right side of the screen.
-2. Move the Python file (with the .py extension) in the package to the directory where the server executable is located and open it with an editor.
-3. Either rewrite the settings section at the top as you like, or make the directory structure "/home/pi/minecraft/java/paper" and make the paper directory the folder where the server executable is located.
+1. Move `DiscordLaunchMC.py` and `config.py` from the package to the directory where the server executable file is located, and open `config.py` with an editor.
+1. Either modify the settings section as desired or set the directory structure to `/home/pi/minecraft/java/paper` and make the `paper` directory the folder where the server executable file is located.
 4. Go to https://discord.com/developers/applications, log in, and click the New Application button. Give it a name, check the box, and create it.
-5. On the left side of the screen, click Bot, then press the Reset Token button, click Yes, do it!, and then press the Copy button and **replace "TOKEN" in the Python file you downloaded with the token**.
+1. On the left side of the screen, click on "Bot", then click the "Reset Token" button, confirm by clicking "Yes, do it!", and finally click the "Copy" button. Replace the **TOKEN** in `config.py` with this copied token.
 6. Turn on all the toggle switches in Privileged Gateway Intents and click the Save changes button that appears at the bottom.
 7. Click OAuth2 → URL Generator on the left side of the screen and check bot and applications.commands from a large number of checkboxes. Then, from another large number of checkboxes that appear below, click Administrator (meaning administrator) because it's too much trouble. (You may need to set each one individually for security reasons, but I think it's fine to be an administrator if you don't worry about being attacked or something. It's your own bot and you just have to keep your token from being leaked or told to anyone.)
 8. Copy the GENERATED URL that appears at the bottom and open it in your browser to invite the bot to your Discord server.
 9. Run it with the following command.
 ```shell
-python3 DiscordLaunchMC.py
+python3 DiscordLaunchMC-en.py
 ```
 
 ## List of available commands
 ### Commands that can be used at any time
-- /hello: It will reply with Hello, [user who executed the command]! A command that anyone can use.
+- **/hello**: Replies with "Hello, [user who executed the command]!" This command can be used by anyone to check if the bot is working properly.
 ### Commands that can only be used by Discord server administrators when the server is stopped
 - **/start**: A command to start the server.
 - /changeworld: Change the world you play in. You need to enter the world name as an argument. Entering a non-existent world name will generate a new world.
