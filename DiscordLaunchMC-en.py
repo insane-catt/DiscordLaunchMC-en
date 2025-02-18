@@ -18,16 +18,16 @@ client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
 
 
-#コマンド群 ------------------------------------------------------
+# Commands ------------------------------------------------------
 
 
-#helloコマンド
+# hello command
 @tree.command(name="hello", description="Hello, world!")
 async def hello(interaction: discord.Interaction):
     await interaction.response.send_message(f'Hello, {interaction.user.mention}!')
 
 
-#サーバー起動
+# Start server
 @tree.command(name="start", description="Start the server")
 @app_commands.default_permissions(administrator=True)
 async def start(interaction: discord.Interaction):
@@ -38,7 +38,7 @@ async def start(interaction: discord.Interaction):
         await interaction.response.send_message('Starting the server. Please wait a moment')
 
 
-#シード値設定
+# Set seed value
 @tree.command(name="setseed", description="Set the seed value of the world")
 @app_commands.default_permissions(administrator=True)
 @app_commands.describe(seed='seed value')
@@ -66,7 +66,30 @@ async def setseed(interaction: discord.Interaction, seed: str = None):
             await interaction.response.send_message(f"Seed value changed to [{seed}].")
 
 
-#PVP設定
+#Set max players
+@tree.command(name="setmaxplayers", description="Change the maximum number of players")
+@app_commands.default_permissions(administrator=True)
+@app_commands.describe(maxplayers='Maximum number of players')
+async def setseed(interaction: discord.Interaction, maxplayers: int):
+    if is_server_running():
+        await interaction.response.send_message('The command cannot be executed because the server is running')
+    else:
+        search_text = "max-players="
+        replace_text = f"max-players={maxplayers}"
+
+        with open(f"{HOME_DIRECTORY}/{SERVER_PATH}/server.properties", 'r') as file:
+            lines = file.readlines()
+
+        with open(f"{HOME_DIRECTORY}/{SERVER_PATH}/server.properties", 'w') as file:
+            for line in lines:
+                if search_text in line:
+                    line = replace_text + '\n'
+                file.write(line)
+
+        await interaction.response.send_message(f"Maximum number of players changed to 【{maxplayers}】")
+
+
+#Set PVP settings
 @tree.command(name="setpvp", description="Change PVP settings")
 @app_commands.default_permissions(administrator=True)
 @app_commands.describe(on_or_off="ON or OFF")
@@ -97,7 +120,7 @@ async def setpvp(interaction: discord.Interaction, on_or_off: str):
             await interaction.response.send_message("PVP setting changed to **OFF** .")
 
 
-#ゲーム難易度設定
+#Set game difficulty
 @tree.command(name="setdifficulty", description="Change game difficulty")
 @app_commands.default_permissions(administrator=True)
 @app_commands.describe(difficulty="difficulty")
@@ -133,7 +156,7 @@ async def setdifficulty(interaction: discord.Interaction, difficulty: str):
             await interaction.response.send_message("Changed game difficulty to **hard** .")
         
 
-#ワールド名指定
+# Change which world to play in
 @tree.command(
         name="changeworld", 
         description="Change the world to play in. A new world is created by entering a world name that does not exist."
@@ -159,7 +182,7 @@ async def changeworld(interaction: discord.Interaction, world: str):
         await interaction.response.send_message(f"Changed world to **{world}** .")
 
 
-#botの停止
+#Log out bot
 @tree.command(name="logout", description="Log this bot out")
 @app_commands.default_permissions(administrator=True)
 async def exitbot(interaction: discord.Interaction):
@@ -171,7 +194,7 @@ async def exitbot(interaction: discord.Interaction):
         sys.exit()
 
 
-#コマンド群ここまで ------------------------------------------------------
+# Commands end here ------------------------------------------------------
 
 
 def is_server_running():
