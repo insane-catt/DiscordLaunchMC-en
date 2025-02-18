@@ -18,11 +18,16 @@ client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
 
 
+#コマンド群 ------------------------------------------------------
+
+
+#helloコマンド
 @tree.command(name="hello", description="Hello, world!")
 async def hello(interaction: discord.Interaction):
     await interaction.response.send_message(f'Hello, {interaction.user.mention}!')
 
 
+#サーバー起動
 @tree.command(name="start", description="Start the server")
 @app_commands.default_permissions(administrator=True)
 async def start(interaction: discord.Interaction):
@@ -33,6 +38,7 @@ async def start(interaction: discord.Interaction):
         await interaction.response.send_message('Starting the server. Please wait a moment')
 
 
+#シード値設定
 @tree.command(name="setseed", description="Set the seed value of the world")
 @app_commands.default_permissions(administrator=True)
 @app_commands.describe(seed='seed value')
@@ -60,6 +66,7 @@ async def setseed(interaction: discord.Interaction, seed: str = None):
             await interaction.response.send_message(f"Seed value changed to [{seed}].")
 
 
+#PVP設定
 @tree.command(name="setpvp", description="Change PVP settings")
 @app_commands.default_permissions(administrator=True)
 @app_commands.describe(on_or_off="ON or OFF")
@@ -90,7 +97,7 @@ async def setpvp(interaction: discord.Interaction, on_or_off: str):
             await interaction.response.send_message("PVP setting changed to **OFF** .")
 
 
-
+#ゲーム難易度設定
 @tree.command(name="setdifficulty", description="Change game difficulty")
 @app_commands.default_permissions(administrator=True)
 @app_commands.describe(difficulty="difficulty")
@@ -126,7 +133,7 @@ async def setdifficulty(interaction: discord.Interaction, difficulty: str):
             await interaction.response.send_message("Changed game difficulty to **hard** .")
         
 
-
+#ワールド名指定
 @tree.command(
         name="changeworld", 
         description="Change the world to play in. A new world is created by entering a world name that does not exist."
@@ -152,6 +159,7 @@ async def changeworld(interaction: discord.Interaction, world: str):
         await interaction.response.send_message(f"Changed world to **{world}** .")
 
 
+#botの停止
 @tree.command(name="logout", description="Log this bot out")
 @app_commands.default_permissions(administrator=True)
 async def exitbot(interaction: discord.Interaction):
@@ -161,6 +169,9 @@ async def exitbot(interaction: discord.Interaction):
         await interaction.response.send_message('Execute logout')
         print("The logout command has been executed.")
         sys.exit()
+
+
+#コマンド群ここまで ------------------------------------------------------
 
 
 def is_server_running():
