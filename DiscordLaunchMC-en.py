@@ -63,7 +63,7 @@ async def setseed(interaction: discord.Interaction, seed: str = None):
         if seed == None:
             await interaction.response.send_message("Seed value changed to default (random)")
         else:
-            await interaction.response.send_message(f"Seed value changed to [{seed}].")
+            await interaction.response.send_message(f"Seed value changed to `{seed}`")
 
 
 #Set max players
@@ -86,7 +86,7 @@ async def setseed(interaction: discord.Interaction, maxplayers: int):
                     line = replace_text + '\n'
                 file.write(line)
 
-        await interaction.response.send_message(f"Maximum number of players changed to 【{maxplayers}】")
+        await interaction.response.send_message(f"Maximum number of players changed to `{maxplayers}`")
 
 
 #Set PVP settings
