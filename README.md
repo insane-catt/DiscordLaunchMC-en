@@ -1,4 +1,9 @@
 # DiscordLaunchMC-en
+
+## Important Notice
+**This is an older version of DiscordLaunchMC. DiscordLaunchMC can now be changed to English in the settings. Therefore, DiscordLaunchMC-en, which was provided as an English version, is no longer supported. [You can use DiscordLaunchMC from this link.](https://github.com/insane-catt/DiscordLaunchMC)**<br>
+
+# README (conventional version)
 JP: これは英語版DiscordLaunchMCです。日本語を使用したい場合は https://github.com/insane-catt/DiscordLaunchMC をご利用ください。<br>
 EN: A Discord bot that can start a Minecraft server with custom settings.
 This English text was translated using Bing Chat. We do our best to ensure the quality of the translation, but just in case, please watch out for translation errors.
